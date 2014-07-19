@@ -6,6 +6,7 @@
 
 package bitdistance;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,6 +31,14 @@ public class BitDistance {
      */
     private List<Integer> _visitedNodes;
 
+    public BitDistance() {
+        this._nodes = new HashMap();
+        this._visitedNodes = new ArrayList();
+        this._numOfNodes = 0;
+    }
+
+    
+    
     /**
      * _visitedNodes getter
      */
@@ -53,7 +62,14 @@ public class BitDistance {
      */
     public void markAsVisited(int n)
     {
-        /// !!!stub
+        if (this._nodes.containsKey(n)){
+            if (!this._visitedNodes.contains(n)){
+                this._visitedNodes.add(n);
+            }
+        } else {
+            throw new IllegalArgumentException("Node #" + n + " does not exist"
+                    + " and can not be marked as visited.");
+        }
         
     }
 
@@ -70,7 +86,7 @@ public class BitDistance {
      * _numOfNodes getter
      * @return int
      */
-    public int getNumOfNodes() {
+    public int size() {
         return _numOfNodes;
     }
     

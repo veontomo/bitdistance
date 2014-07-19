@@ -42,68 +42,60 @@ public class BitDistanceTest {
     }
 
     /**
-     * Test of getVisitedNodes method, of class BitDistance.
-     */
-    @Test
-    public void testGetVisitedNodes() {
-        System.out.println("get visited nodes");
-        
-    }
-
-    /**
-     * Test of isVisited method, of class BitDistance.
-     */
-    @Test
-    public void testIsVisited() {
-        System.out.println("isVisited");
-        int n = 0;
-        BitDistance instance = new BitDistance();
-        boolean expResult = false;
-        boolean result = instance.isVisited(n);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of markAsVisited method, of class BitDistance.
      */
     @Test
-    public void testMarkAsVisited() {
-        System.out.println("markAsVisited");
-        int n = 0;
-        BitDistance instance = new BitDistance();
-        instance.markAsVisited(n);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testMarkAsVisitedIfExists() {
+        System.out.println("mark existent node as visited");
+        b.addNode("01010");
+        b.addNode("01011");
+        b.addNode("11010");
+        b.markAsVisited(0);
+        assertTrue(b.isVisited(0));
+        assertFalse(b.isVisited(1));
+        assertFalse(b.isVisited(2));
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testMarkAsVisitedIfNotExists() {
+        System.out.println("mark non-existent node as visited");
+        b.addNode("01010");
+        b.markAsVisited(6);
+    }
+    
+    @Test
+    public void testMarkAsVisitedTwice() {
+        System.out.println("mark node as visited twice");
+        b.addNode("01010");
+        b.addNode("01011");
+        b.addNode("11010");
+        b.markAsVisited(1);
+        b.markAsVisited(1);
+        assertTrue(b.isVisited(1));
+        assertFalse(b.isVisited(0));
+        assertFalse(b.isVisited(2));
+
+    }
+
+
 
     /**
      * Test of getNodes method, of class BitDistance.
      */
-    @Test
-    public void testGetNodes() {
-        System.out.println("getNodes");
-        BitDistance instance = new BitDistance();
-        HashMap<Integer, String> expResult = null;
-        HashMap<Integer, String> result = instance.getNodes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+ 
 
     /**
-     * Test of getNumOfNodes method, of class BitDistance.
+     * Test of size method, of class BitDistance.
      */
     @Test
     public void testGetNumOfNodes() {
-        System.out.println("getNumOfNodes");
-        BitDistance instance = new BitDistance();
-        int expResult = 0;
-        int result = instance.getNumOfNodes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("get number of nodes");
+        b.addNode("01010");
+        b.addNode("01010");
+        b.addNode("01010");
+        b.addNode("01011");
+        b.addNode("01111");
+        assertTrue(b.size() == 5);
     }
 
     /**
@@ -116,10 +108,12 @@ public class BitDistanceTest {
         int pos = b.addNode("01010");
         assertTrue(pos == 0);
         assertEquals(b.getNode(0), "01010");
+        assertTrue(b.size() == 1);
 
         int pos2 = b.addNode("0111");
-        assertTrue(pos == 1);
-        assertEquals(b.getNode(0), "0111");
+        assertTrue(pos2 == 1);
+        assertEquals(b.getNode(1), "0111");
+        assertTrue(b.size() == 2);
 
         
     }
@@ -127,13 +121,6 @@ public class BitDistanceTest {
     /**
      * Test of main method, of class BitDistance.
      */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        BitDistance.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
     
 }
