@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @author Andrea
  */
 public class BitDistanceTest {
-    
+    public BitDistance b;
     public BitDistanceTest() {
     }
     
@@ -34,6 +34,7 @@ public class BitDistanceTest {
     
     @Before
     public void setUp() {
+        b = new BitDistance();
     }
     
     @After
@@ -45,13 +46,8 @@ public class BitDistanceTest {
      */
     @Test
     public void testGetVisitedNodes() {
-        System.out.println("getVisitedNodes");
-        BitDistance instance = new BitDistance();
-        List<Integer> expResult = null;
-        List<Integer> result = instance.getVisitedNodes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("get visited nodes");
+        
     }
 
     /**
@@ -115,12 +111,17 @@ public class BitDistanceTest {
      */
     @Test
     public void testAddNode() {
-        System.out.println("addNode");
-        String coord = "";
-        BitDistance instance = new BitDistance();
-        instance.addNode(coord);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("add nodes nodes");
+        
+        int pos = b.addNode("01010");
+        assertTrue(pos == 0);
+        assertEquals(b.getNode(0), "01010");
+
+        int pos2 = b.addNode("0111");
+        assertTrue(pos == 1);
+        assertEquals(b.getNode(0), "0111");
+
+        
     }
 
     /**

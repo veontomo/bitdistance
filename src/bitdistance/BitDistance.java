@@ -74,10 +74,17 @@ public class BitDistance {
         return _numOfNodes;
     }
     
-    public void addNode(String coord)
+    public int addNode(String coord)
     {
         int len = this._numOfNodes;
         this._nodes.put(len, coord);
+        this._numOfNodes++;
+        return len;
+    }
+    
+    public String getNode(int n)
+    {
+        return this._nodes.get(n);
     }
     
     /**
